@@ -45,4 +45,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    
+    //Указывает что у пользователя может быть много постов(отношение один ко многим)
+    public function posts()
+    {
+        return $this -> hasMany(Post::class);
+    }
 }
