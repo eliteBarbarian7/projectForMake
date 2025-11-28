@@ -6,9 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+    //Создает таблицу users для хранения данных пользователей
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
@@ -20,9 +18,7 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+    //Удаляет таблицу users при откате миграции
     public function down(): void
     {
         Schema::dropIfExists('users');

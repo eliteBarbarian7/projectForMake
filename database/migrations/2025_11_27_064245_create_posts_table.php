@@ -6,9 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+    //Создает таблицу posts для хранения постов пользователей
     public function up(): void
     {
         Schema::create('posts', function (Blueprint $table) {
@@ -21,9 +19,7 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+    //Удаляет таблицу posts при откате миграции
     public function down(): void
     {
         Schema::dropIfExists('posts');
