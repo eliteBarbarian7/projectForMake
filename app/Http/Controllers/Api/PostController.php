@@ -14,9 +14,16 @@ class PostController extends Controller
     //возвращаем список постов на одну страницу по 15 штук
     public function index(Request $request): JsonResponse
     {
+        $order = $request->get('order', 'newer');
+    
         $posts = Post::with('user:id,name')
-                    ->select('id', 'title', 'excerpt', 'user_id', 'created_at')
-                    ->paginate(15);
+                ->select('id', 'title', 'excerpt', 'user_id', 'created_at')
+                ->when($order == 'oldest', function($query) {
+                    return $query->orderBy('created_at', 'asc'); //Сортировка от старых к новым
+                }, function($query) {
+                    return $query->orderBy('created_at', 'desc'); //Сортировка от новых к старым
+                })
+                ->paginate(15);
         
         return response()->json($posts);
     }
